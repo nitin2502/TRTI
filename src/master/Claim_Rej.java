@@ -3,6 +3,9 @@ package master;
 import java.io.File;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -10,6 +13,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import com.google.common.io.Files;
+
+import ru.yandex.qatools.ashot.AShot;
+import ru.yandex.qatools.ashot.Screenshot;
+import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
 public class Claim_Rej {
 
@@ -25,8 +32,13 @@ public class Claim_Rej {
    Thread .sleep(1000);
 	driver.findElement(By.xpath("//*[@id=\"login\"]/div/div/div[2]/form/div/div[2]/div/div/input")).sendKeys("admin");
     Thread .sleep(1000);	
-	driver.findElement(By.xpath("//*[@id=\"login\"]/div/div/div[2]/form/div/div[4]/button")).click();
-	Thread .sleep(1000);
+    String s=JOptionPane.showInputDialog("enter your captcha");
+    
+  	driver.findElement(By.xpath("//input[@placeholder='Enter Captcha']")).sendKeys(s);
+      Thread .sleep(1000);
+    
+  	driver.findElement(By.xpath("//*[@id=\"login\"]/div/div/div[2]/form/div/div[5]/button")).click();
+  	Thread .sleep(1000);
 	// master selection
 	driver.findElement(By.xpath("//*[@id=\"heading1\"]/button/div/div[2]")).click();
 	Thread .sleep(1000);
@@ -62,10 +74,11 @@ public class Claim_Rej {
 	driver.switchTo().alert().accept();
 	Thread .sleep(3000);
 	//takes screenshot
-	   File  scr =((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-  		Files.copy(scr, new File("C:\\Users\\niting\\eclipse-workspace\\TRTI\\Screenshot02.png")); 
+	Screenshot k= new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver);
+
+	ImageIO.write(k.getImage(), "png", new File("C:\\Users\\niting\\eclipse-workspace\\TRTI\\Screenshot\\11.png"));
 // close browser
-	Thread .sleep(5000);
+	Thread .sleep(4000);
 	  driver.close();	
 }
 	

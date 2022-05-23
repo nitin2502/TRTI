@@ -1,6 +1,9 @@
 package master;
 import java.io.File;
 import java.io.IOException;
+
+import javax.swing.JOptionPane;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -23,7 +26,12 @@ public class CasteN {
 		driver.findElement(By.xpath("//*[@id=\"login\"]/div/div/div[2]/form/div/div[2]/div/div/input")).sendKeys("admin");
 	    Thread .sleep(1000);
 	    //click on login button
-		driver.findElement(By.xpath("//*[@id=\"login\"]/div/div/div[2]/form/div/div[4]/button")).click();
+	    String s=JOptionPane.showInputDialog("enter your captcha");
+	    
+		driver.findElement(By.xpath("//input[@placeholder='Enter Captcha']")).sendKeys(s);
+	    Thread .sleep(1000);
+	  
+		driver.findElement(By.xpath("//*[@id=\"login\"]/div/div/div[2]/form/div/div[5]/button")).click();
 		Thread .sleep(1000);
 		//master selection
 		driver.findElement(By.xpath("/html/body/app-root/app-layout/div/app-sidebar/nav/app-admin-menu/div/div[2]/h2/button")).click();

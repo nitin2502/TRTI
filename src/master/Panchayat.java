@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -28,8 +30,13 @@ public class Panchayat {
      Thread .sleep(1000);
 	driver.findElement(By.xpath("//*[@id=\"login\"]/div/div/div[2]/form/div/div[2]/div/div/input")).sendKeys("admin");
      Thread .sleep(1000);	
-	driver.findElement(By.xpath("//*[@id=\"login\"]/div/div/div[2]/form/div/div[4]/button")).click();
-   Thread .sleep(3000);
+     String s=JOptionPane.showInputDialog("enter your captcha");
+     
+ 	driver.findElement(By.xpath("//input[@placeholder='Enter Captcha']")).sendKeys(s);
+     Thread .sleep(1000);
+   
+ 	driver.findElement(By.xpath("//*[@id=\"login\"]/div/div/div[2]/form/div/div[5]/button")).click();
+ 	Thread .sleep(1000);
    //click on master
 	driver.findElement(By.xpath("//*[@id=\"heading1\"]/button/div/div[2]")).click();
 		//click on panchayat

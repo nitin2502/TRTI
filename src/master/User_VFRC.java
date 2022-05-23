@@ -1,6 +1,8 @@
 package master;
 import java.io.File;
 
+import javax.swing.JOptionPane;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -23,8 +25,13 @@ public class User_VFRC {
 	   Thread .sleep(1000);
 	   driver.findElement(By.xpath("//input[@placeholder='Password']")).sendKeys("admin");
 	   Thread .sleep(1000);	
-		driver.findElement(By.xpath("//*[@id=\"login\"]/div/div/div[2]/form/div/div[4]/button")).click();
-		Thread .sleep(1000);
+	   String s=JOptionPane.showInputDialog("enter your captcha");
+	    
+	  	driver.findElement(By.xpath("//input[@placeholder='Enter Captcha']")).sendKeys(s);
+	      Thread .sleep(1000);
+	    
+	  	driver.findElement(By.xpath("//*[@id=\"login\"]/div/div/div[2]/form/div/div[5]/button")).click();
+	  	Thread .sleep(1000);
 		//Click on master and user tab
 		driver.findElement(By.xpath("/html/body/app-root/app-layout/div/app-sidebar/nav/app-admin-menu/div/div[2]/h2/button")).click();
 		Thread .sleep(1000);
@@ -116,7 +123,7 @@ public class User_VFRC {
 				// takes screenshot
 				//only mobNo change user register from can accept all details
 				 File  scr =((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-					Files.copy(scr, new File("Z:\\Scrnshot\\User03.png"));
+					Files.copy(scr, new File("C:\\Users\\niting\\eclipse-workspace\\TRTI\\Screenshot02.png"));
 		
 		// browser close
 		 Thread .sleep(3000);

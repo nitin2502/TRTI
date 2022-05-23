@@ -1,5 +1,7 @@
 package old_Claim;
 
+import javax.swing.JOptionPane;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -27,8 +29,13 @@ public class Thanedlc
 	Thread .sleep(1000);
 	 driver().findElement(By.xpath("//*[@id=\"login\"]/div/div/div[2]/form/div/div[2]/div/div/input")).sendKeys("aneDLC@5959");
 	  Thread .sleep(1000);	
-	  driver().findElement(By.xpath("//*[@id=\"login\"]/div/div/div[2]/form/div/div[4]/button")).click();
-	  Thread .sleep(4000);	
+	  String s=JOptionPane.showInputDialog("enter your captcha");
+	    
+	  	driver().findElement(By.xpath("//input[@placeholder='Enter Captcha']")).sendKeys(s);
+	      Thread .sleep(1000);
+	    
+	  	driver().findElement(By.xpath("//*[@id=\"login\"]/div/div/div[2]/form/div/div[5]/button")).click();
+	  	Thread .sleep(3000);
 	    
 	  
 		 // System.setProperty("webdriver.gecko.driver","C:\\Users\\niting\\eclipse-workspace\\Mavenutility\\src\\main\\resources\\drivers\\geckodriver\\geckodriver.exe");
@@ -41,7 +48,7 @@ public class Thanedlc
 	 {
 		 return driver.get();
 	 }
-	   //  @AfterMethod
+	    // @AfterMethod
 	     public void teardown() 
 	     {  
 	    	 driver().quit();
